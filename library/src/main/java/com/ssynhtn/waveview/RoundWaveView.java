@@ -2,7 +2,6 @@ package com.ssynhtn.waveview;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -14,9 +13,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
-
-import com.ssynhtn.library.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +28,7 @@ public class RoundWaveView extends View {
     private Path path;
     private Paint paint;
 
-    int pointCount;
+    int pointCount = 6;
     float innerSizeRatio = 0.75f;
     float[] firstRadius;
     float[] secondRadius;   //
@@ -51,7 +47,7 @@ public class RoundWaveView extends View {
     float translationRadius;
     float translationRadiusStep;
 
-    boolean useAnimation;
+    boolean useAnimation = true;
 
     public RoundWaveView(Context context) {
         this(context, null);
@@ -59,11 +55,6 @@ public class RoundWaveView extends View {
 
     public RoundWaveView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RoundWaveView);
-        pointCount = typedArray.getInt(R.styleable.RoundWaveView_pointCount, 6);
-        useAnimation = typedArray.getBoolean(R.styleable.RoundWaveView_useAnimation, true);
-        typedArray.recycle();
         init(pointCount);
 
         path = new Path();
